@@ -2,3 +2,4 @@
 /env
 **/.idea/
 .DS_Store
+/blog/static/css/bootstrap.css

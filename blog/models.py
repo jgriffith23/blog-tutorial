@@ -18,5 +18,7 @@ class Post(models.Model):
         self.published_date = timezone.now()
         self.save()
 
+    # Both the Django girls tutorial and the official Django tutorial
+    # have you make a __str__ instead of __repr__. Why...?
     def __str__(self):
-        return self.title
+        return "Title: %s, Author: %s" % (self.title, self.author)

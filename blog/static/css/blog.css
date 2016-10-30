@@ -56,3 +56,13 @@ h1, h2, h3, h4 {
 .post h1 a, .post h1 a:visited {
     color: #000000;
 }
+
+.errorlist {
+    color: #d70000;
+    list-style: none;
+    border-radius: .5em;
+    border-width: thin;
+    border-style: solid;
+    padding: .5em;
+    background-color: #ffddd8;
+}

@@ -3,10 +3,41 @@ from django.utils import timezone
 from .models import Post
 from .forms import PostForm
 
-def post_list(request):
-    """Display a list of all posts."""
-    posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
-    return render(request, 'blog/post_list.html', {'posts': posts})
+from django.views import generic
+
+class PostListView(generic.ListView):
+    """List of all posts...literally all of them ever."""
+
+    template_name = "blog/post_list.html"
+    queryset = (Post
+                .objects
+                .filter(published_date__lte=timezone.now())
+                .order_by('-published_date')
+               )
+
+    context_object_name = "posts"
+
+# class PostDetailView(generic.DetailView):
+#     """Details about a single post.
+#
+#     Includes full text, pub date, and author.
+#
+#     Shows option to edit when authenticated.
+#     """
+#
+#     template_name = "blog/post_detail.html"
+#     context_object_name = "post"
+#     queryset = Post.objects
+
+    # def get(self, request):
+    #     return Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
+    #     return render(request, 'blog/post_list.html', {'posts': posts})
+
+
+# def post_list(request):
+#     """Display a list of all posts."""
+#     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
+#     return render(request, 'blog/post_list.html', {'posts': posts})
 
 def post_detail(request, pk):
     """Display text of a single post."""

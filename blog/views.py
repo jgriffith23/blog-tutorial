@@ -5,66 +5,50 @@ from .forms import PostForm
 
 from django.views import generic
 
+
 class PostListView(generic.ListView):
     """List of all posts...literally all of them ever."""
 
     template_name = "blog/post_list.html"
-    queryset = (Post
-                .objects
-                .filter(published_date__lte=timezone.now())
-                .order_by('-published_date')
-               )
+    queryset = Post.objects.order_by('-published_date')
 
     context_object_name = "posts"
 
-# class PostDetailView(generic.DetailView):
-#     """Details about a single post.
-#
-#     Includes full text, pub date, and author.
-#
-#     Shows option to edit when authenticated.
-#     """
-#
-#     template_name = "blog/post_detail.html"
-#     context_object_name = "post"
-#     queryset = Post.objects
 
-    # def get(self, request):
-    #     return Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
-    #     return render(request, 'blog/post_list.html', {'posts': posts})
+class PostDetailView(generic.DetailView):
+    """Details about a single post.
+
+    Includes full text, pub date, and author.
+
+    Shows option to edit when authenticated.
+    """
+
+    model = Post
+    template_name = "blog/post_detail.html"
 
 
-# def post_list(request):
-#     """Display a list of all posts."""
-#     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
-#     return render(request, 'blog/post_list.html', {'posts': posts})
+# def post_new(request):
+#     """View post creation form and create new posts."""
 
-def post_detail(request, pk):
-    """Display text of a single post."""
-    post = get_object_or_404(Post, pk=pk)
-    return render(request, 'blog/post_detail.html', {'post': post})
+#     # FIXME: Break into "display" and "process" routes; this hurts. T.T
+#     if request.method == 'POST':
+#         form = PostForm(request.POST)
+#         if form.is_valid():
+#             # Create a new Post instance with the form data, set its author
+#             # and pub date, and commit it to the db.
+#             post = form.save(commit=False)
+#             post.author = request.user
+#             post.published_date = timezone.now()
+#             post.save()
 
-def post_new(request):
-    """View post creation form and create new posts."""
+#             # Take us to the post_detail page!
+#             return redirect('blog:post_detail', pk=post.pk)
 
-    # FIXME: Break into "display" and "process" routes; this hurts. T.T
-    if request.method == 'POST':
-        form = PostForm(request.POST)
-        if form.is_valid():
-            # Create a new Post instance with the form data, set its author
-            # and pub date, and commit it to the db.
-            post = form.save(commit=False)
-            post.author = request.user
-            post.published_date = timezone.now()
-            post.save()
+#     else:
+#         form = PostForm()
 
-            # Take us to the post_detail page!
-            return redirect('blog:post_detail', pk=post.pk)
+#     return render(request, 'blog/post_edit.html', {'form': form})
 
-    else:
-        form = PostForm()
-
-    return render(request, 'blog/post_edit.html', {'form': form})
 
 def post_edit(request, pk):
     """Edit an existing post."""
@@ -88,3 +72,49 @@ def post_edit(request, pk):
     return render(request, 'blog/post_edit.html', {'form': form})
 
 
+class PostCreateView(generic.CreateView):
+    """Create a post."""
+
+    template_name = "blog/post_edit.html"
+    form_invalid_message = "Please fill out all required fields."
+    form_valid_message = "Hooray!"
+    form_class = PostForm
+    success_url = "blog/post_detail"
+
+    def get(self, request, *args, **kwargs):
+        form = self.form_class(initial=self.initial)
+        return render(request, self.template_name, {'form':form})
+
+    def post(self, request, *args, **kwargs):
+        form = self.form_class(request.POST)
+
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user
+            post.published_date = timezone.now()
+            post.save()
+
+            # Take us to the post_detail page!
+            return redirect('blog:post_detail', pk=post.pk)
+
+
+    # def get_context_data(self, **kwargs):
+    #     u = self.request.user
+    #     context = super(PostCreateView, self).get_context_data(**kwargs)
+    #     context['author_id'] = u.id
+    #     context['published_date'] = timezone.now()
+    #     print "\n\n\n", context, "\n\n\n"
+    #     return context
+#
+# class PostUpdateView(generic.UpdateView):
+#     """Class for post update form."""
+#
+#     template_name = "blog/post_edit.html"
+#     form_class = PostForm
+#     success_url = "blog/post_detail"
+#     form_invalid_message = "Please complete all required fields."
+#     form_valid_message = "Hooray! Your post was edited."
+#
+#     def get_queryset(self, queryset=None):
+#         """Get the existing post record."""
+#         return get_object_or_404(Post, pk=self.pk)

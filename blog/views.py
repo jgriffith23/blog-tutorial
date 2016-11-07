@@ -79,23 +79,27 @@ class PostCreateView(generic.CreateView):
     form_invalid_message = "Please fill out all required fields."
     form_valid_message = "Hooray!"
     form_class = PostForm
-    success_url = "blog/post_detail"
+    # success_url = "blog/post_detail"
 
-    def get(self, request, *args, **kwargs):
-        form = self.form_class(initial=self.initial)
-        return render(request, self.template_name, {'form':form})
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super(PostCreateView, self).form_valid(form)
 
-    def post(self, request, *args, **kwargs):
-        form = self.form_class(request.POST)
+    # def get(self, request, *args, **kwargs):
+    #     form = self.form_class(initial=self.initial)
+    #     return render(request, self.template_name, {'form':form})
 
-        if form.is_valid():
-            post = form.save(commit=False)
-            post.author = request.user
-            post.published_date = timezone.now()
-            post.save()
+    # def post(self, request, *args, **kwargs):
+    #     form = self.form_class(request.POST)
 
-            # Take us to the post_detail page!
-            return redirect('blog:post_detail', pk=post.pk)
+    #     if form.is_valid():
+    #         post = form.save(commit=False)
+    #         post.author = request.user
+    #         post.published_date = timezone.now()
+    #         post.save()
+
+    #         # Take us to the post_detail page!
+    #         return redirect('blog:post_detail', pk=post.pk)
 
 
     # def get_context_data(self, **kwargs):

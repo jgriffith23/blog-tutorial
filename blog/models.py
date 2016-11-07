@@ -24,6 +24,6 @@ class Post(models.Model):
         return reverse("blog:post_detail", kwargs={"pk": self.pk})
 
     # Both the Django girls tutorial and the official Django tutorial
-    # have you make a __str__ instead of __repr__. Why...?
+    # have you make a __str__ instead of __repr__. Why?
     def __str__(self):
         return "Title: %s, Author: %s" % (self.title, self.author)

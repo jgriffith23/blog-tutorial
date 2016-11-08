@@ -83,32 +83,8 @@ class PostCreateView(generic.CreateView):
 
     def form_valid(self, form):
         form.instance.author = self.request.user
+        form.instance.published_date = timezone.now()
         return super(PostCreateView, self).form_valid(form)
-
-    # def get(self, request, *args, **kwargs):
-    #     form = self.form_class(initial=self.initial)
-    #     return render(request, self.template_name, {'form':form})
-
-    # def post(self, request, *args, **kwargs):
-    #     form = self.form_class(request.POST)
-
-    #     if form.is_valid():
-    #         post = form.save(commit=False)
-    #         post.author = request.user
-    #         post.published_date = timezone.now()
-    #         post.save()
-
-    #         # Take us to the post_detail page!
-    #         return redirect('blog:post_detail', pk=post.pk)
-
-
-    # def get_context_data(self, **kwargs):
-    #     u = self.request.user
-    #     context = super(PostCreateView, self).get_context_data(**kwargs)
-    #     context['author_id'] = u.id
-    #     context['published_date'] = timezone.now()
-    #     print "\n\n\n", context, "\n\n\n"
-    #     return context
 #
 # class PostUpdateView(generic.UpdateView):
 #     """Class for post update form."""

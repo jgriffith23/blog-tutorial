@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+from braces.views import StaffuserRequiredMixin, LoginRequiredMixin
 from .models import Post
 from .forms import PostForm
 
@@ -28,10 +29,10 @@ class PostDetailView(generic.DetailView):
     model = Post
     template_name = "blog/post_detail.html"
 
-
-# FIXME: Do I need to create an account/login route...?
-@method_decorator(login_required, name='dispatch')
-class PostCreateView(generic.CreateView):
+# FIXME: Give this class the ability to actually keep users out? R/n the template
+# is actually doing the heavy lifting. Perhaps go back to method decorator
+# from previous commit?
+class PostCreateView(generic.CreateView, StaffuserRequiredMixin, LoginRequiredMixin):
     """Create a post."""
 
     template_name = "blog/post_edit.html"

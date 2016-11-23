@@ -1,5 +1,5 @@
 *.pyc
-/env
+/venv
 **/.idea/
 .DS_Store
 /blog/static/css/bootstrap.css

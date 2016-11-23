@@ -52,7 +52,7 @@ class PostCreateView(LoginRequiredMixin, StaffuserRequiredMixin, generic.CreateV
     """Create a post."""
 
     # FIXME: Nononono. I can't keep this as admin. Build a login route.
-    login_url = '/admin/'
+    login_url = '/login/'
 
     template_name = "blog/post_edit.html"
     form_class = PostForm
@@ -81,7 +81,7 @@ class PostUpdateView(LoginRequiredMixin, generic.UpdateView):
     """Class for post update form."""
 
     # FIXME: Nononono. I can't keep this as admin. Build a login route.
-    login_url = '/admin/'
+    login_url = '/login/'
 
     template_name = "blog/post_edit.html"
     form_class = PostForm

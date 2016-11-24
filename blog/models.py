@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 from django.db import models
 from django.utils import timezone
 from django.urls import reverse
+from django_markup.fields import MarkupField
 
 
 class Post(models.Model):

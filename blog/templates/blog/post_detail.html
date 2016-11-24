@@ -1,5 +1,7 @@
 {%  extends 'blog/base.html' %}
 
+{% load markup_tags %}
+
 {% block content %}
 
     <div class="post">
@@ -15,7 +17,7 @@
         {% endif %}
 
         <h1>{{ post.title }}</h1>
-        <p>{{ post.text|linebreaksbr }}</p>
+        <p>{{ post.text|apply_markup:'restructuredtext'|linebreaksbr }}</p>
     </div>
 
 {%  endblock %}

@@ -1,13 +1,29 @@
 {% extends 'blog/base.html' %}
 
+{% load markup_tags %}
+
 {% block content %}
     {% for post in posts %}
         <div class="post">
             <h1><a href="{% url 'blog:post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
-            <p>{{ post.text|linebreaksbr }}</p>
+            <p>{{ post.text|apply_markup:'restructuredtext'|linebreaksbr}}</p>
             <div class="date">
                 <p>published: {{ post.published_date }}</p>
             </div>
         </div>
     {% endfor %}
+
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+            {% endif %}
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">next</a>
+            {% endif %}
+
+        </span>
+    </div>
+
 {% endblock %}

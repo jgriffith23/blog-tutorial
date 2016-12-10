@@ -1,3 +1,8 @@
+/* 
+    Most of this CSS is gratefully borrowed from the Django Girls blog tutorial,
+    which you can find here: https://tutorial.djangogirls.org/en/css/
+*/
+
 h1 a {
     color: #8c2ca4;
     font-family: 'Josefin Sans', sans-serif;
@@ -20,6 +25,11 @@ body {
     color: #ffffff;
     font-size: 36pt;
     text-decoration: none;
+}
+
+.navbar > .container-fluid {
+    background-color: #8c2ca4;
+    border-style: none;
 }
 
 .content {
@@ -47,6 +57,7 @@ h1, h2, h3, h4 {
     float: right;
     font-size: 26pt;
     margin-right: 20px;
+    margin-top: .25em;
     font-family: 'Josefin Sans', sans-serif;
 }
 

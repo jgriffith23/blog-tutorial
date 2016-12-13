@@ -1,35 +1,42 @@
 /* 
-    Most of this CSS is gratefully borrowed from the Django Girls blog tutorial,
+    Parts of this CSS are gratefully borrowed from the Django Girls blog tutorial,
     which you can find here: https://tutorial.djangogirls.org/en/css/
 */
 
-h1 a {
-    color: #8c2ca4;
-    font-family: 'Josefin Sans', sans-serif;
+/* Universal styles: Post headings, and the running body font. */
 
+
+/* The Big Purple Bar <3 */
+
+nav.navbar.navbar-default {
+    background-color: #8c2ca4;
+    margin-top: 0;
+    padding: 20px 20px 20px 40px;
+    border-radius: 0;
+    background-image: none;
+    box-shadow: none;
 }
+
+nav.navbar.navbar-default h1, nav.navbar.navbar-default h1 a {
+    color: #ffffff;
+    font-size: 1.75em;
+    text-decoration: none;
+}
+
+.top-menu, .top-menu:hover, .top-menu:visited, .navbar-default .navbar-nav>li>a {
+    color: #ffffff;
+    font-size: 2em;
+    margin-right: 20px;
+    margin-top: 20px;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+/* General content formatting. */
 
 body {
     padding-left: 15px;
     font-family: 'Lato';
     background-color: #f6f0f9;
-}
-
-.page-header {
-    background-color: #8c2ca4;
-    margin-top: 0;
-    padding: 20px 20px 20px 40px;
-}
-
-.page-header h1, .page-header h1 a, .page-header h1 a:visited, .page-header h1 a:active {
-    color: #ffffff;
-    font-size: 36pt;
-    text-decoration: none;
-}
-
-.navbar > .container-fluid {
-    background-color: #8c2ca4;
-    border-style: none;
 }
 
 .content {
@@ -52,15 +59,6 @@ h1, h2, h3, h4 {
     width: 100%;
 }
 
-.top-menu, .top-menu:hover, .top-menu:visited {
-    color: #ffffff;
-    float: right;
-    font-size: 26pt;
-    margin-right: 20px;
-    margin-top: .25em;
-    font-family: 'Josefin Sans', sans-serif;
-}
-
 .post {
     margin-bottom: 70px;
 }
@@ -77,4 +75,16 @@ h1, h2, h3, h4 {
     border-style: solid;
     padding: .5em;
     background-color: #ffddd8;
+}
+
+nav>ul.pagination>li>a {
+    color: #8c2ca4;
+}
+
+/* Img formatting */
+
+.align-center {
+    display: block;
+    margin: auto;
+    width: 40%;
 }

@@ -12,11 +12,12 @@
 
         {% endif %}
 
+        <h1>{{ post.title }}
         {% if request.user.is_staff %}
-            <a class="btn btn-default" href="{% url 'blog:post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+            <a class="btn" href="{% url 'blog:post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
         {% endif %}
+        </h1>
 
-        <h1>{{ post.title }}</h1>
         <p>{{ post.text|apply_markup:'restructuredtext' }}</p>
     </div>
 

@@ -47,13 +47,9 @@ class PostDetailView(generic.DetailView):
     template_name = "blog/post_detail.html"
 
 
-# FIXME: Give this class the ability to actually keep users out? R/n the template
-# is actually doing the heavy lifting. Perhaps go back to method decorator
-# from previous commit?
 class PostCreateView(LoginRequiredMixin, StaffuserRequiredMixin, generic.CreateView):
     """Create a post."""
 
-    # FIXME: Nononono. I can't keep this as admin. Build a login route.
     login_url = '/login/'
 
     template_name = "blog/post_edit.html"
@@ -82,7 +78,6 @@ class PostCreateView(LoginRequiredMixin, StaffuserRequiredMixin, generic.CreateV
 class PostUpdateView(LoginRequiredMixin, generic.UpdateView):
     """Class for post update form."""
 
-    # FIXME: Nononono. I can't keep this as admin. Build a login route.
     login_url = '/login/'
 
     template_name = "blog/post_edit.html"

@@ -9,24 +9,42 @@
     <link rel="stylesheet" href="{% static 'css/blog.css' %}">
     <link rel="stylesheet" href="{% static 'css/pygments-long.css' %}">
     <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:700|Lato" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <title>Jennifer's Blog</title>
 </head>
 <body>
-    <div class="page-header">        
-        <nav class="navbar navbar-default">
-            <h1 class="navbar-brand"><a href="/">Jennifer's Blog</a></h1>
-            <div class="container-fluid">
-                {% if request.user.is_staff %}
-                    <div class="top-menu">
-                        <a class="navbar-text" href="{% url 'blog:post_new' %}"><span class="glyphicon glyphicon-plus"></span></a>
-                        <a class="navbar-text" href="{% url 'blog:logout' %}">Logout</a>
-                    </div>
-                {% else %}
-                    <a href="{% url 'blog:login' %}" class="top-menu">Log In</a>
-                {% endif %}
-            </div>
-        </nav>
-    </div>
+
+
+
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <h1><a class="navbar-brand" href="/">Jennifer's Blog</a></h1>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a class="top-menu" href="#">About</a></li>
+            <li><a class="top-menu" href="#">Projects</a></li>
+            {% if request.user.is_staff %}
+                <li><a class="top-menu" href="{% url 'blog:post_new' %}">New</a></li>
+                <li><a class="top-menu" href="{% url 'blog:logout' %}">Logout</a></li>
+            {% else %}
+                <li><a class="top-menu" href="{% url 'blog:login' %}" class="top-menu">Log In</a></li>
+            {% endif %}
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+
     <div class="content container">
         <div class="row">
             <div class="col-md-8">
@@ -36,4 +54,7 @@
         </div>
     </div>
 </body>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 </html>

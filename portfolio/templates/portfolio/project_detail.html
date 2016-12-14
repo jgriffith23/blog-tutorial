@@ -1,0 +1,20 @@
+{%  extends 'blog/base.html' %}
+
+{% load markup_tags %}
+
+{% block content %}
+
+    <div class="project">
+
+        <h1>{{ project.title }}
+{#        {% if request.user.is_staff %}#}
+{#            <a class="btn" href="{% url 'blog:post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span> Edit</a>#}
+{#        {% endif %}#}
+        </h1>
+
+        <p>{{ project.text|apply_markup:'restructuredtext' }}</p>
+
+        <p><img class="img-responsive" src="{{ project.image.url }}"></p>
+    </div>
+
+{%  endblock %}

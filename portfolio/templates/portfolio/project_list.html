@@ -1,0 +1,13 @@
+{% extends 'blog/base.html' %}
+
+{% load markup_tags %}
+
+{% block content %}
+    {% for project in projects %}
+        <div class="project">
+            <h1><a href="{% url 'blog:project_detail' pk=project.pk %}">{{ project.title }}</a></h1>
+            <p>{{ project.text|apply_markup:'restructuredtext'}}</p>
+        </div>
+    {% endfor %}
+
+{% endblock %}

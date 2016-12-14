@@ -31,36 +31,3 @@ class Post(models.Model):
 
         return "Title: %s, Author: %s" % (self.title, self.author)
 
-#FIXME: Consider making portfolio its own project
-class Project(models.Model):
-    """A model to represent project entries in a portfolio.
-
-    I wonder, though--should this perhaps be a separate "app"? Or
-    Is there enough overlap between this and a Post that there should be
-    a mixin involved? Both should be published, and have title/text.
-    """
-
-    title = models.CharField(max_length=205)
-    text = models.TextField()
-
-    #FIXME: change field name
-    image_url = models.ImageField(
-        blank=True
-    )
-
-    github_url = models.URLField(
-        blank=True
-    )
-
-    demo_url = models.URLField(
-        blank=True
-    )
-
-    def get_absolute_url(self):
-        return reverse("blog:project_detail", kwargs={"pk": self.pk})
-
-    def __str__(self):
-        """How a project should be represented as a string."""
-
-        return self.title
-

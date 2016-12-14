@@ -3,7 +3,7 @@ from django.utils import timezone
 from django.contrib.auth.mixins import LoginRequiredMixin
 from braces.views import StaffuserRequiredMixin
 
-from .models import Post, Project
+from .models import Post
 from .forms import PostForm
 
 from django.views import generic
@@ -80,28 +80,3 @@ class PostUpdateView(LoginRequiredMixin, StaffuserRequiredMixin, generic.UpdateV
     def get_object(self, queryset=None):
         """Get the existing post record."""
         return get_object_or_404(Post, pk=self.kwargs["pk"])
-
-
-####################################
-# Portfolio Projects
-####################################
-
-class ProjectListView(generic.ListView):
-    """List of all the projects. Ever."""
-
-    template_name = "blog/project_list.html"
-    queryset = Post.objects.order_by('title')
-
-    context_object_name = "projects"
-
-
-class ProjectDetailView(generic.DetailView):
-    """Details about a single project.
-
-    Includes full text, title, and optional image + external links.
-
-    Shows option to edit when authenticated.
-    """
-
-    model = Project
-    template_name = "blog/project_detail.html"

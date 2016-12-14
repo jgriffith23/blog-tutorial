@@ -3,13 +3,17 @@ from django.utils import timezone
 from django.contrib.auth.mixins import LoginRequiredMixin
 from braces.views import StaffuserRequiredMixin
 
-from .models import Post
+from .models import Post, Project
 from .forms import PostForm
 
 from django.views import generic
 from django.contrib.auth import login
 from django.contrib.auth.forms import AuthenticationForm
 
+
+####################################
+# Authentication
+####################################
 
 class LoginView(generic.FormView):
     """A login page."""
@@ -23,6 +27,10 @@ class LoginView(generic.FormView):
         login(self.request, form.get_user())
         return super(LoginView, self).form_valid(form)
 
+
+####################################
+# Posts
+####################################
 
 class PostListView(generic.ListView):
     """List of all posts...literally all of them ever."""
@@ -55,27 +63,13 @@ class PostCreateView(LoginRequiredMixin, StaffuserRequiredMixin, generic.CreateV
     template_name = "blog/post_edit.html"
     form_class = PostForm
 
-    def get_context_data(self, **kwargs):
-        context = super(PostCreateView, self).get_context_data(**kwargs)
-
-        # FIXIME: Technically not using the context right now. Want to
-        # be able to check it on base template somehow...?
-        if self.request.user.is_staff:
-            context['is_staff'] = True
-
-        print "lalalala", context
-        print self.request.user
-        print context['is_staff']
-
-        return context
-
     def form_valid(self, form):
         form.instance.author = self.request.user
         form.instance.published_date = timezone.now()
         return super(PostCreateView, self).form_valid(form)
 
 
-class PostUpdateView(LoginRequiredMixin, generic.UpdateView):
+class PostUpdateView(LoginRequiredMixin, StaffuserRequiredMixin, generic.UpdateView):
     """Class for post update form."""
 
     login_url = '/login/'
@@ -86,3 +80,28 @@ class PostUpdateView(LoginRequiredMixin, generic.UpdateView):
     def get_object(self, queryset=None):
         """Get the existing post record."""
         return get_object_or_404(Post, pk=self.kwargs["pk"])
+
+
+####################################
+# Portfolio Projects
+####################################
+
+class ProjectListView(generic.ListView):
+    """List of all the projects. Ever."""
+
+    template_name = "blog/project_list.html"
+    queryset = Post.objects.order_by('title')
+
+    context_object_name = "projects"
+
+
+class ProjectDetailView(generic.DetailView):
+    """Details about a single project.
+
+    Includes full text, title, and optional image + external links.
+
+    Shows option to edit when authenticated.
+    """
+
+    model = Project
+    template_name = "blog/project_detail.html"

@@ -27,7 +27,6 @@ class LoginView(generic.FormView):
         login(self.request, form.get_user())
         return super(LoginView, self).form_valid(form)
 
-
 ####################################
 # Posts
 ####################################
@@ -79,4 +78,5 @@ class PostUpdateView(LoginRequiredMixin, StaffuserRequiredMixin, generic.UpdateV
 
     def get_object(self, queryset=None):
         """Get the existing post record."""
+
         return get_object_or_404(Post, pk=self.kwargs["pk"])

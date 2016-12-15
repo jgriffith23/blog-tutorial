@@ -4,7 +4,6 @@ from . import views
 
 app_name = 'blog'
 
-# FIXME: Add slug for projects
 urlpatterns = [
     url(r'^$', views.ProjectListView.as_view(), name='project_list'),
     url(r'^project/(?P<pk>\d+)/$', views.ProjectDetailView.as_view(), name='project_detail'),

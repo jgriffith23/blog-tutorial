@@ -1,7 +1,8 @@
 from __future__ import unicode_literals
-
 from django.db import models
 from django.urls import reverse
+from imagekit.models import ProcessedImageField
+from pilkit.processors import ResizeToFill
 
 
 class Project(models.Model):
@@ -10,8 +11,9 @@ class Project(models.Model):
     title = models.CharField(max_length=205)
     text = models.TextField()
 
-    image = models.ImageField(
-        upload_to="project-images",
+    image = ProcessedImageField(
+        upload_to="portfolio/static/portfolio/images",
+        processors=[ResizeToFill(200,200)],
         blank=True,
     )
 

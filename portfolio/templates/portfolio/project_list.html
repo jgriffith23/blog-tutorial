@@ -5,8 +5,13 @@
 {% block content %}
     {% for project in projects %}
         <div class="project">
-            <h1><a href="{% url 'blog:project_detail' pk=project.pk %}">{{ project.title }}</a></h1>
-            <p>{{ project.text|apply_markup:'restructuredtext'}}</p>
+            <h1><a href="{% url 'portfolio:project_detail' pk=project.pk %}">{{ project.title }}</a></h1>
+            {% if project.image %}
+                <img src={{ project.image.url }}>
+            {% endif %}
+            <p>
+                {{ project.text|apply_markup:'restructuredtext'}}
+            </p>
         </div>
     {% endfor %}
 

@@ -17,13 +17,13 @@
         <ul class="pagination">
             {% if page_obj.has_previous %}
                 <li>
-                    <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                    <a href="?page={{ page_obj.previous_page_number }}">newer posts</a>
                 </li>
             {% endif %}
 
             {% if page_obj.has_next %}
                 <li>
-                    <a href="?page={{ page_obj.next_page_number }}">next</a>
+                    <a href="?page={{ page_obj.next_page_number }}">older posts</a>
                 </li>
             {% endif %}
         </ul>

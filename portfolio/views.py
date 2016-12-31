@@ -1,8 +1,3 @@
-from django.shortcuts import render
-
-####################################
-# Portfolio Projects
-####################################
 from django.views import generic
 from portfolio.models import Project
 

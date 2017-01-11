@@ -4,3 +4,4 @@
 .DS_Store
 /blog/static/css/bootstrap.css
 portfolio/static
+secrets.sh

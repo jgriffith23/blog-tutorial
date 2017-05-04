@@ -6,3 +6,5 @@
 /blog/static/css/bootstrap.css
 portfolio/static
 secrets.sh
+*.swp
+static/

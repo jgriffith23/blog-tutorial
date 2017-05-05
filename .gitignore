@@ -8,3 +8,4 @@ portfolio/static
 secrets.sh
 *.swp
 static/
+*/local_settings.py

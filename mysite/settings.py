@@ -14,7 +14,7 @@ try:
     from local_settings import DEBUG, ALLOWED_HOSTS
 
 except ImportError:
-    DEBUG = False
+    DEBUG = True
     ALLOWED_HOSTS = []
 
 

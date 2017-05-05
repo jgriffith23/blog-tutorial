@@ -23,7 +23,7 @@ MEDIA_URL = '/media/'
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'ovyjimjx^n&q2zi@)__lepg29djk2v*7_4fg72l@t8nv$l_nc3'
+SECRET_KEY = os.environ['BLOG_SECRET_KEY']
 
 
 # Security settings suggested by check --deploy
@@ -36,7 +36,7 @@ CSRF_COOKIE_HTTPONLY = True
 X_FRAME_OPTIONS = 'DENY'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['.jennifergd.com','172.31.30.183']
 

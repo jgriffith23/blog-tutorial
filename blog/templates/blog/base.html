@@ -36,9 +36,6 @@
             <li><a class="top-menu" href="{% url 'portfolio:project_list' %}">Projects</a></li>
             {% if request.user.is_staff %}
                 <li><a class="top-menu" href="{% url 'blog:post_new' %}">New</a></li>
-                <li><a class="top-menu" href="{% url 'blog:logout' %}">Logout</a></li>
-            {% else %}
-                <li><a class="top-menu" href="{% url 'blog:login' %}" class="top-menu">Log In</a></li>
             {% endif %}
           </ul>
         </div><!-- /.navbar-collapse -->

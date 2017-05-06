@@ -9,14 +9,8 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 
 import os
 
-# Production has a local settings.py to get certain config vars from.
-try:
-    from local_settings import DEBUG, ALLOWED_HOSTS
-
-except ImportError:
-    DEBUG = True
-    ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', ['.jennifergd.com','172.31.30.183'])
+DEBUG = os.environ.get('DEBUG', True)
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))

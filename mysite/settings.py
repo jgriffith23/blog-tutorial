@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 
 import os
 
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', ['.jennifergd.com', 172.31.30.183])
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', ['.jennifergd.com', '172.31.30.183'])
 DEBUG = os.environ.get('DEBUG', False)
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)

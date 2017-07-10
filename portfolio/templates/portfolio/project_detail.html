@@ -6,20 +6,18 @@
 
     <div class="project">
 
-        <h1>{{ project.title }}
-{#        {% if request.user.is_staff %}#}
-{#            <a class="btn" href="{% url 'blog:project_edit' pk=project.pk %}"><span class="glyphicon glyphicon-pencil"></span> Edit</a>#}
-{#        {% endif %}#}
-        </h1>
+        <h1>{{ project.title }}</h1>
 
         <p>{{ project.text|apply_markup:'restructuredtext' }}</p>
 
         <p>
             {% if project.image %}
-                <img class="img-responsive" src="{{ project.image.url }}" alt="FFS" />
-            {% else %}
-                Aw, no images for this project. T.T
+                <img class="img-responsive" src="{{ project.image.url }}"/>
             {% endif %}
+        </p>
+
+        <p>
+            <a href="{% project.github_url %}">View on GitHub</a>
         </p>
     </div>
 

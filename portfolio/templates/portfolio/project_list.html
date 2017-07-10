@@ -12,6 +12,10 @@
             <p>
                 {{ project.text|apply_markup:'restructuredtext'}}
             </p>
+
+            <p>
+                <a href="{% project.github_url %}">View on GitHub</a>
+            </p>
         </div>
     {% endfor %}
 

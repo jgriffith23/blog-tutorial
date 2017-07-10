@@ -12,7 +12,7 @@ class Project(models.Model):
     text = models.TextField()
 
     image = ProcessedImageField(
-        upload_to="portfolio/static/portfolio/images",
+        upload_to="/static/portfolio/images",
         processors=[ResizeToFill(200,200)],
         blank=True,
     )

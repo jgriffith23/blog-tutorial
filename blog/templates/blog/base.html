@@ -32,7 +32,7 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="navbar-collapse-1">
           <ul class="nav navbar-nav navbar-right">
-            <li><a class="top-menu" href="#">About</a></li>
+            <li><a class="top-menu" href="/about">About</a></li>
             <li><a class="top-menu" href="{% url 'portfolio:project_list' %}">Projects</a></li>
             {% if request.user.is_staff %}
                 <li><a class="top-menu" href="{% url 'blog:post_new' %}">New</a></li>

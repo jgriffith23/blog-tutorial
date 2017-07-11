@@ -11,4 +11,5 @@ urlpatterns = [
     url(r'^post/(?P<pk>\d+)/edit$', views.PostUpdateView.as_view(), name='post_edit'),
     url(r'^login/', views.LoginView.as_view(), name='login'),
     url(r'^logout/', auth_views.logout, name='logout'),
+    url(r'^about', views.AboutView.as_view(), name='about')
 ]

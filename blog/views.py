@@ -80,3 +80,9 @@ class PostUpdateView(LoginRequiredMixin, StaffuserRequiredMixin, generic.UpdateV
         """Get the existing post record."""
 
         return get_object_or_404(Post, pk=self.kwargs["pk"])
+
+
+class AboutView(generic.TemplateView):
+    """The about page."""
+
+    template_name = "blog/about.html"

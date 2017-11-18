@@ -6,7 +6,13 @@
     {% for post in posts %}
         <div class="post">
             <h1><a href="{% url 'blog:post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
-            <p>{{ post.text|apply_markup:'restructuredtext'}}</p>
+            <p>
+              {% if post.preview_graf %}
+                {{ post.preview_graf }}
+              {% else %}
+                {{ post.text|apply_markup:'restructuredtext'}}
+              {% endif %}
+            </p>
             <div class="date">
                 <p>published: {{ post.published_date }}</p>
             </div>

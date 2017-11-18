@@ -12,7 +12,7 @@
 
         {% endif %}
 
-        <h1>{{ post.title }}
+        <h1 class="title">{{ post.title }}
         {% if request.user.is_staff %}
             <a class="btn" href="{% url 'blog:post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
         {% endif %}

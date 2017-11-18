@@ -71,6 +71,18 @@ h1, h2, h3, h4 {
     color: #000000;
 }
 
+.post h1.title{
+    font-size: 2em;
+}
+
+.post h1 {
+    font-size: 1.75em;
+}
+
+.post h2 {
+    font-size: 1.5em;
+}
+
 .errorlist {
     color: #d70000;
     list-style: none;

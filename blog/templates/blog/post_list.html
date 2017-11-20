@@ -8,7 +8,7 @@
             <h1><a href="{% url 'blog:post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
             <p>
               {% if post.preview_graf %}
-                {{ post.preview_graf }}
+                {{ post.preview_graf|apply_markup:'restructuredtext' }}
               {% else %}
                 {{ post.text|apply_markup:'restructuredtext'}}
               {% endif %}

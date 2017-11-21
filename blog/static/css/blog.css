@@ -75,6 +75,14 @@ h1, h2, h3, h4 {
     font-size: 1.75em;
 }
 
+.post .document .section .section h2 {
+    font-size: 1.5em;
+}
+
+.post .document .section .section .section h3 {
+    font-size: 1.333em;
+}
+
 .errorlist {
     color: #d70000;
     list-style: none;

@@ -77,6 +77,7 @@ h1, h2, h3, h4 {
 
 .post .document .section .section h2 {
     font-size: 1.5em;
+    font-style: italic;
 }
 
 .post .document .section .section .section h3 {

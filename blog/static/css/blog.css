@@ -61,6 +61,7 @@ h1, h2, h3, h4 {
 
 .post-form textarea, .post-form input {
     width: 100%;
+    font-family: "Courier";
 }
 
 .post {

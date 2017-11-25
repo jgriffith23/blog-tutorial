@@ -16,6 +16,12 @@
             <p>
                 <a href="{{ project.github_url }}">View on GitHub</a>
             </p>
+
+            {% if project.demo_url %}
+            <p>
+                <a href="{{ project.demo_url}}">Visit the Deployed Site</a>
+            </p>
+            {% endif %}
         </div>
     {% endfor %}
 

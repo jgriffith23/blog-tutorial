@@ -106,3 +106,20 @@ nav>ul.pagination>li>a {
     margin: auto;
     width: 40%;
 }
+
+/* About Page */
+
+.content > .row > .col-md-8 > #about-img {
+    float: left;
+    padding: 0 10px 0 0;
+    margin: 4px 10px 0px 0px;
+    height: 23em;
+}
+
+ul  {
+ padding-left:0;   
+}
+
+ul li  {
+ list-style-position:inside
+}
